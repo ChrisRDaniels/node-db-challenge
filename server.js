@@ -2,8 +2,10 @@ const express = require("express");
 const server = express();
 
 const helmet = require("helmet");
+const morgan = require("morgan");
 
 server.use(helmet());
+server.use(morgan("short"));
 server.use(express.json());
 
 const projectRouter = require("./routers/projectRouter");
