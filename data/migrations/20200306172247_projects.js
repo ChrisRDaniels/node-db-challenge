@@ -5,7 +5,10 @@ exports.up = function(knex) {
 
    table.string("name", 255).notNull();
    table.string("description", 255);
-   table.boolean("completed").defaultTo(false);
+   table
+    .boolean("completed")
+    .notNull()
+    .defaultTo(false);
   })
   .createTable("task", table => {
    table.increments();
