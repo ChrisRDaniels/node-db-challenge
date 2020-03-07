@@ -3,28 +3,27 @@ const db = require("../knexfunctions");
 
 router.get("/", (req, res) => {
  db
-  .getResources()
-  .then(resources => {
-   res.status(200).json(resources);
+  .getTasks()
+  .then(tasks => {
+   res.status(200).json(tasks);
   })
   .catch(err => {
    console.log(err);
-   res
-    .status(500)
-    .json({ Error: "There was an error getting a resource list." });
+   res.status(500).json({ Error: "There was an error getting a task list." });
   });
 });
 
-router.post("/", (req, res) => {
+router.post("/:id/tasks", (req, res) => {
  db
-  .addResource(req.body)
-  .then(resource => {
-   res.status(201).json(resource);
+  .addTask(req.body)
+  .then(task => {
+   res.status(201).json(task);
   })
   .catch(err => {
    console.log(err);
-   res.status(500).json({ Error: "There was an error adding the resource" });
+   res.status(500).json({ Error: "There was a problem adding the task" });
   });
 });
 
 module.exports = router;
+
