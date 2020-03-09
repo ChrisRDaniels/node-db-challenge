@@ -14,10 +14,10 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
- if (!req.body.project_id) {
-  res
-   .status(404)
-   .json({ message: "Please include a project ID with your request." });
+ if (!req.body.project_id && req.body.description) {
+  res.status(404).json({
+   message: "Please include a project ID and description with your request."
+  });
  } else {
   db
    .addTask(req.body)
