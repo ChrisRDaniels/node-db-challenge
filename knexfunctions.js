@@ -23,7 +23,7 @@ const addTask = data => {
 const getTasks = () => {
  return knex("task")
   .join("project", "project.id", "=", "task.project_id")
-  .select("task.*", "project.name", "project.description as desc");
+  .select("task.*", "project.name", "project.description as proj_desc");
 };
 
 module.exports = {
